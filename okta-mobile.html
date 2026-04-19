@@ -412,7 +412,10 @@
 
     <!-- ── BRIEFING ── -->
     <div class="panel" id="panelBriefing">
-      <div class="section-title" id="briefingMeta"></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+        <div class="section-title" style="margin-bottom:0" id="briefingMeta">Briefing</div>
+        <button onclick="loadBriefing(true)" style="background:var(--surface);border:1px solid var(--border);color:var(--text-dim);padding:6px 12px;border-radius:var(--r);font-size:12px;cursor:pointer">↻ Rafraîchir</button>
+      </div>
       <div id="briefingContent"><div class="loading">Chargement du briefing…</div></div>
     </div>
 
@@ -619,11 +622,14 @@ function resetForm() {
 }
 
 // ─── Briefing ─────────────────────────────────────────
-async function loadBriefing() {
+async function loadBriefing(force = false) {
   const today    = todayISO();
   const filename = `okta-briefing-${today}.md`;
 
   document.getElementById('briefingMeta').textContent = `Briefing — ${today}`;
+  if (force) {
+    document.getElementById('briefingContent').innerHTML = '<div class="loading">Chargement…</div>';
+  }
 
   try {
     const files = await driveSearch(filename);
@@ -648,6 +654,7 @@ function switchTab(name) {
     document.getElementById('tab'   + n).classList.toggle('active', n === name);
   });
   if (name === 'Tasks' && tasksData) renderTasks();
+  if (name === 'Briefing') loadBriefing();
 }
 
 function setPrio(p) {
