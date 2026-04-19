@@ -1,0 +1,18 @@
+{
+  "name": "Okta",
+  "short_name": "Okta",
+  "description": "Capture de tâches et briefing quotidien",
+  "start_url": "/okta-mobile/okta-mobile.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
